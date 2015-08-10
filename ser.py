@@ -5,6 +5,7 @@ import os
 from subprocess import Popen, PIPE
 import sys
 import signal
+import shutil
 
 HTML = '/var/www/html/'
 CMDDIR = '/home/tomas/bingo/Bundler-master/'
@@ -55,6 +56,7 @@ while 1:
                 simLog(f, 'Start: ' + str(d1))
 
                 sh([CMDDIR + 'RunSFM_MT.sh', ok], f)
+                sh(['/home/tomas/zxyqwe/poisson/filter_poisson', HTML + 'upload/pmvs/models/option-0000.ply', HTML + '3d.ply'], f)
 
                 d2 = datetime.datetime.now()
                 simLog(f, 'End: ' + str(d2))
@@ -66,7 +68,7 @@ while 1:
                 time.sleep(5)
 
                 if os.path.exists(HTML + 'upload/ok'):
-                        os.rename(HTML + 'log', HTML + 'upload/log')
+                        shutil.copy(HTML + 'log', HTML + 'upload/log')
                         t = HTML + 'result/' + time.strftime('%Y-%m-%d-%H-%M-%S') + os.sep
                         os.mkdir(t)
                         for i in os.walk(HTML + 'upload/'):
