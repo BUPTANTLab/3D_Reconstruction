@@ -56,6 +56,7 @@ while 1:
                 simLog(f, 'Start: ' + str(d1))
 
                 sh([CMDDIR + 'RunSFM_MT.sh', ok], f)
+                sh([HTML + 'PotreeConverter', '-o', HTML + 'cloud/', HTML + 'upload/pmvs/models/option-0000.ply'], f)
                 sh(['/home/tomas/zxyqwe/poisson/filter_poisson', HTML + 'upload/pmvs/models/option-0000.ply', HTML + '3d.ply'], f)
 
                 d2 = datetime.datetime.now()
